@@ -15,5 +15,15 @@ class ArtistsController < ApplicationController
         params.permit(:name)
     end
 
+    def edit
+        @artist = Artist.find(params[:id])
+    end
+
+    def update
+        artist = Artist.find(params[:id])
+        artist.update(artist_params)
+        redirect_to '/artists'
+    end
+
 
 end
