@@ -1,6 +1,6 @@
 <h1> <%= @song.title %> </h1>
 
-<h3>Artist: <%= @song.artist.name %> </h3>
+<h3>Artist: <%= link_to @song.artist.name, "/artists/#{@song.artist.id}/songs" %> </h3>
 <p>Length: <%= @song.length %> </p>
 <p>Play Count: <%= @song.play_count %> </p>
 <br>
