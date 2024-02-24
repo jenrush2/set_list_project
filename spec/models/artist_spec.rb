@@ -1,9 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe Artist do
-    it {should have_many :songs}
+    describe "validations" do
+        it { should validate_presence_of :name }
+    end
+    
+    describe 'relationships' do
+        it { should have_many :songs }
+    end
 
     describe 'instance methods' do
+        
         describe '#average_song_length' do
             before :each do
                 @prince = Artist.create!(name: 'Prince')
@@ -16,6 +23,8 @@ RSpec.describe Artist do
             it 'returns the average song length' do
                 expect(@prince.average_song_length.round(2)).to eq(554.33)
             end
+
+
         end
     end
 
