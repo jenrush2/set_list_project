@@ -9,6 +9,10 @@ class Song < ApplicationRecord
         order(:title)
     end
 
+    def self.search_title(word)
+        where("title like '%Love%'")
+    end
+
     def self.shortest(amount)
         order(length: :asc).limit(amount)
     end
