@@ -10,22 +10,22 @@ RSpec.describe Artist do
     end
 
     describe 'instance methods' do
-        
-        describe '#average_song_length' do
-            before :each do
-                @prince = Artist.create!(name: 'Prince')
-                @purple = @prince.songs.create!(title: 'Purple Rain', length: 845, play_count: 384)
-                @beret = @prince.songs.create!(title: 'Raspberry Beret', length: 816, play_count: 323)
-                @other_song = @prince.songs.create!(title: 'Another Prince Song', length: 2, play_count: 99)
+        before :each do
+            @prince = Artist.create!(name: 'Prince')
+            @purple = @prince.songs.create!(title: 'Purple Rain', length: 845, play_count: 384)
+            @beret = @prince.songs.create!(title: 'Raspberry Beret', length: 816, play_count: 323)
+            @other_song = @prince.songs.create!(title: 'Another Prince Song', length: 2, play_count: 99)
 
-            end
+        end
+
+        describe '#average_song_length' do
 
             it 'returns the average song length' do
                 expect(@prince.average_song_length.round(2)).to eq(554.33)
             end
         end
 
-        describe "last_updated" do
+        describe 'last_updated' do
             it "returns the date the instance was last updated" do
                 artist = Artist.create(name: "prince")
                 updated_time = Time.zone.now
@@ -35,6 +35,21 @@ RSpec.describe Artist do
                 expect(artist.last_updated).to eq(updated_time.strftime("%Y-%m-%d"))
             end
             
+        end
+        describe 'song sorting for an artist' do
+            it 'returns the songs of an artist sorted by title alphabetically' do
+                expect(@prince.song_sort).to eq([@other_song, @purple, @beret])
+            end
+
+            it 'can return the number of songs for an artist that have at least 1 play and a length greater than 0' do
+                jgb = Artist.create!(name: "Jerry Garcia Band")
+                
+                jgb.songs.create!(title: 'Song 1', length: 0.125, play_count: 0)
+                jgb.songs.create!(title: 'Song 2', length: 845, play_count: 4)
+                jgb.songs.create!(title: 'Not a song', length: 0, play_count: 4)
+                
+                expect(jgb.played_song_count).to eq(1)
+            end
         end
     end
           

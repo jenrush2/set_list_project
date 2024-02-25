@@ -10,6 +10,14 @@ class Artist < ApplicationRecord
         updated_at.strftime("%Y-%m-%d")
     end
 
+    def song_sort
+        songs.order(:title)
+    end
+
+    def played_song_count
+        songs.where("length > 0 and play_count >= 1").count
+    end
+
     def self.newest_first
         order(created_at: :desc)
     end
