@@ -2,7 +2,19 @@ class Song < ApplicationRecord
     belongs_to :artist
 
     def self.song_count
-        self.all.count
+        all.count
+    end
+
+    def self.by_title
+        order(:title)
+    end
+
+    def self.shortest(amount)
+        order(length: :asc).limit(amount)
+    end
+
+    def artist_name
+        artist.name
     end
 
 end
