@@ -10,7 +10,8 @@ class Song < ApplicationRecord
     end
 
     def self.search_title(word)
-        where("title like '%Love%'")
+
+        where("title like '%#{word}%'")
     end
 
     def self.shortest(amount)
