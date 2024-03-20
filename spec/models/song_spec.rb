@@ -42,17 +42,12 @@ RSpec.describe Song, type: :model do
           expect(Song.search_title('Love')).to eq([@love_you, @love_song])
         end
 
-        # it 'Return the 3 songs that have the most plays, a length greater than x where x can be any integer value, and were updated within the last three days' do
-        #   #last one in class vs instance methods
-            #was going to test it one part at a time,
-            #starting with length. Getting error
-            #wrong number of arguments (given 3, expected 1)
-            #same error even if change to different integer
-            #or change to a string input
-            
-        #   expect(Song.special(454)).to eq(@wild_life, @love_song, @love_you)
+        it 'Return the 3 songs that have the most plays, a length greater than x where x can be any integer value, and were updated within the last three days' do
+          #last one in class vs instance methods
+          expected = [@wild_life, @love_song, @purple_rain]
+          expect(Song.special(454)).to eq(expected)
 
-        # end
+        end
 
       end
 
