@@ -21,13 +21,6 @@ class Song < ApplicationRecord
         order(length: :asc).limit(amount)
     end
 
-    #see spec/models/song_spec.rb for info on 
-    #error with with method/test
-    
-    # def self.special(sp_length)
-    #     where("length > #{sp_length}")
-    # end
-
     def self.special(sp_length)
         three_days_ago = Time.now - 3.days
         self.where('length > ?', sp_length).where('updated_at > ?', three_days_ago).order(play_count: :desc).limit(3)
