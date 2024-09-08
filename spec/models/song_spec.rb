@@ -49,6 +49,42 @@ RSpec.describe Song, type: :model do
 
         end
 
+        #Below are tests from joins homework. 
+        #Joins HW Directions: Your task is to write AR queries and set them 
+        #to the query variable set up for you in each test. When you run 
+        #each test, your query should make the test pass.
+
+        it 'Get all songs' do
+          query = Song.all
+
+          expect(query.sort).to eq([@rasperry_beret, @purple_rain, @love_you, @wild_life, @love_song].sort)
+        end
+
+        it "Get the lengths of all songs" do
+          query = Song.pluck(:length)
+    
+          expect(query).to eq([234, 524, 721, 456, 606])
+        end
+
+        it "Get the songs with a play count greater than 19" do
+          query = Song.where("play_count > 19")
+    
+          expect(query.sort).to eq([@rasperry_beret, @wild_life, @love_song].sort)    
+        end
+
+        it "Get the titles of the songs with a play count greater than zero, sorted alphabetically" do
+          query = Song.where("play_count > 19").order(:title).pluck(:title)
+    
+          expect(query.sort).to eq(["Love Song", "Raspberry Beret", "Wild Wild Life"])
+        end
+
+        it "Get the length of the song with the most plays" do
+          query = Song.order(play_count: :desc).pluck(:length)[0]
+          
+          expect(query).to eq(456)
+        end
+
+
       end
 
       describe 'instance methods' do
