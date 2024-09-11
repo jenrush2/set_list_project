@@ -2,6 +2,7 @@ class Artist < ApplicationRecord
     has_many :songs
     has_many :playlists, through: :songs
     validates_presence_of :name
+    validates :name, uniqueness: true
 
     def average_song_length
         songs.average(:length)

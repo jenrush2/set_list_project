@@ -4,6 +4,7 @@ RSpec.describe Playlist, type: :model do
     describe "relationships" do
         it {should have_many :playlist_songs}
         it {should have_many(:songs).through(:playlist_songs)}
+        it {should validate_presence_of(:name)}
     end
 
     describe "class methods" do

@@ -2,6 +2,10 @@ class Song < ApplicationRecord
     belongs_to :artist
     has_many :playlist_songs
     has_many :playlists, through: :playlist_songs 
+    validates :length, numericality: true
+    validates :play_count, numericality: true
+    validates :title, length: {maximum: 50}
+
     
 
     def self.song_count

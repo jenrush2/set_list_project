@@ -5,6 +5,10 @@ RSpec.describe Song, type: :model do
         it {should belong_to :artist}
         it {should have_many :playlist_songs}
         it {should have_many(:playlists).through(:playlist_songs)}
+        it {should validate_numericality_of(:length)}
+        it {should validate_numericality_of(:play_count)}
+        it {should validate_length_of(:title).is_at_most(50)}
+
       end
 
       before :each do
