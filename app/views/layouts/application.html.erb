@@ -12,7 +12,15 @@
 
   <body>
     <% flash.each do |type, message| %>
-      <p><%= message %></p>
+      <p style = 
+  "background: #EE4B2B !important;
+  padding: 10px !important;
+  border-radius: 0 !important;
+  position: relative; 
+  display: inline-block !important;
+  box-shadow: 1px 1px 1px #aaaaaa;
+  margin-top: 10px;
+"><%= message %></p>
     <% end %>
     <%= yield %>
   </body>
