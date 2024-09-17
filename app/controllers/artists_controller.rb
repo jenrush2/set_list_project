@@ -22,9 +22,13 @@ class ArtistsController < ApplicationController
     end
 
     def update
-        artist = Artist.find(params[:id])
-        artist.update(artist_params)
-        redirect_to '/artists'
+        @artist = Artist.find(params[:id])
+        if @artist.update(artist_params)
+            redirect_to '/artists'
+        else
+            flash[:notice] = "Artist not updated: Required information missing."
+            render :edit
+        end
     end
 
     def destroy
