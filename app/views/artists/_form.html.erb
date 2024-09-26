@@ -1,0 +1,8 @@
+<%# locals: (path:, method:, button_text:) -%>
+
+<%= form_with url: path, method: method, data: { turbo: false }, local: true do |form|%>
+    <%= form.label :name %> 
+    <%= form.text_field :name %>
+
+    <%= form.submit button_text %>
+<% end %>

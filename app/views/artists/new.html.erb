@@ -1,6 +1,2 @@
-<%= form_with url:'/artists', method: :post, data: { turbo: false }, local: true do |form|%>
-    <%= form.label :name %> 
-    <%= form.text_field :name %>
+<%= render partial: 'form', locals: {path: '/artists', method: :post, button_text: "Create Artist"} %>
 
-    <%= form.submit "Create Artist" %>
-<% end %>
