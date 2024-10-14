@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   patch '/artists/:id', to: 'artists#update'
   delete '/artists/:id', to: 'artists#destroy'
   get '/playlists', to: 'playlists#index'
+  patch '/cart/:song_id', to: 'cart#update'
 
 end
