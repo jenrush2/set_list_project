@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   #get '/songs/:id', to: 'songs#show'
   #get '/playlists', to: 'playlists#index'
   
-  resources :songs, only: [:index, :show]
+  resources :songs
 
   resources :artists do
     resources :songs, only: [:index], controller: "artist_songs"
