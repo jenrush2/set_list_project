@@ -16,6 +16,20 @@ class SongsController < ApplicationController
         redirect_to songs_path
     end
 
+    def edit
+        @song = Song.find(params[:id])
+    end
+
+    def update
+        @song = Song.find(params[:id])
+        if @song.update(song_params)
+            redirect_to '/songs'
+        else
+            flash[:notice] = "Song not updated: Required information missing."
+            render :edit
+        end
+    end
+
 
 
     private
