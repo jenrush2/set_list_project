@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+
 RSpec.describe Artist do
     describe "validations" do
         it { should validate_presence_of :name }
@@ -75,6 +76,11 @@ RSpec.describe Artist do
             end
         end
 
+        describe "filter artists" do
+            it "return all artists with songs with at least 1,000,000 plays" do
+                
+            end
+        end
 
         
     end
