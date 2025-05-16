@@ -28,4 +28,8 @@ class Artist < ApplicationRecord
         order(:name)
     end
 
+    def self.filter_1mil_song_count
+        joins(:songs).where("play_count >= ?", 1_000_000).distinct.order(:id)
+    end
+
 end
