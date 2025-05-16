@@ -22,6 +22,17 @@ RSpec.describe Song, type: :model do
         @wild_life = @talking_heads.songs.create!(title: 'Wild Wild Life', length: 456, play_count: 45)
         @love_song = @talking_heads.songs.create!(title: 'Love Song', length: 606, play_count: 21)
 
+        @summer_rewind = Playlist.create!(name: "summer rewind", created_at: "01/11/2020")
+        @chill_evening = Playlist.create!(name: "chill evening", created_at: "01/01/1999")
+  
+
+        PlaylistSong.create!(playlist: @summer_rewind, song: @rasperry_beret)
+        PlaylistSong.create!(playlist: @summer_rewind, song: @love_you)
+      
+        PlaylistSong.create!(playlist: @chill_evening, song: @rasperry_beret)
+        PlaylistSong.create!(playlist: @chill_evening, song: @love_song)
+  
+
       end
     
       describe 'class methods' do
@@ -86,6 +97,14 @@ RSpec.describe Song, type: :model do
           query = Song.order(play_count: :desc).pluck(:length)[0]
           
           expect(query).to eq(456)
+        end
+
+        describe ".on_all_playlists" do
+          it "returns a unique list of songs on all playlists" do
+            
+            # call sort on both expected and actual values because we don"t care about order
+            expect(Song.on_all_playlists.sort).to eq([@rasperry_beret, @love_you, @love_song].sort)
+          end
         end
 
 

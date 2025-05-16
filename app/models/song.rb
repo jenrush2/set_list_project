@@ -30,6 +30,10 @@ class Song < ApplicationRecord
         self.where('length > ?', sp_length).where('updated_at > ?', three_days_ago).order(play_count: :desc).limit(3)
     end
 
+    def self.on_all_playlists
+        joins(:playlists).distinct
+    end
+
     def artist_name
         artist.name
     end
